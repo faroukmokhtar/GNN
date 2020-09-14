@@ -1,4 +1,6 @@
-<img src="https://github.com/jmduarte/HiggsToBBMachineLearning/raw/dsc/HIG-19-003_v7.png" width=500> </img>
+<center>
+<img src="https://github.com/jmduarte/HiggsToBBMachineLearning/raw/dsc/HIG-19-003_v7.png" width=500 />
+</center>
 
 # Particle Physics and Machine Learning
 
@@ -20,7 +22,7 @@ identying Higgs boson decaying to bottom quarks. Specifically, reproducing
 (or surpassing) results in this paper (not necessarily with the same ML technique):
 * [Interaction networks for the identification of boosted \\(H \to b\bar{b}\\)](https://arxiv.org/abs/1909.12285)
 
-This implies reproducing Figure 4, Figure 5, and if time permits Figure 8 in this paper.
+This implies reproducing Figure 4, Figure 5, and if time permits Figure 8 in this paper {cite}`Moreno:2019neq`.
 
 The latter-half of Quarter 1 will introduce you to further topics to inform possible
 avenues for further research.
