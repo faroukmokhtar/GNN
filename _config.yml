@@ -1,6 +1,6 @@
 # Book settings
 title: Particle Physics and Machine Learning
-author: Javier Duarte
+author: Javier Duarte and Frank Wuerthwein
 logo: logo.png
 
 latex:
@@ -8,8 +8,8 @@ latex:
     targetname: book.tex
 
 repository:
-  url                       : https://github.com/jmduarte/HiggsToBBMachineLearning
-  branch                    : dsc
+  url                       : https://github.com/jmduarte/capstone-particle-physics-domain
+  branch                    : master
 
 launch_buttons:
   binderhub_url: "https://mybinder.org"
