@@ -11,4 +11,5 @@ dependencies:
     - numpy
     - pip
     - pip:
+      - "--upgrade"
       - jupyter-book
