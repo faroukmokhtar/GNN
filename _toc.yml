@@ -7,9 +7,9 @@
   sections:
   - file: weeks/03-features.ipynb
 - file: weeks/04.md
-- file: weeks/05.md
   sections:
-  - file: weeks/05-deep-learning.ipynb
+  - file: weeks/04-simple-classifiers.ipynb
+- file: weeks/05.md
 - file: weeks/06.md
 - file: weeks/07.md
 - file: weeks/08.md
