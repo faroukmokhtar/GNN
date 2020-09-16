@@ -14,3 +14,6 @@ repository:
 launch_buttons:
   binderhub_url: "https://mybinder.org"
   jupyterhub_url: "https://datahub.ucsd.edu"
+
+execute:
+  timeout: 300
