@@ -13,6 +13,8 @@
   sections:
   - file: weeks/05-deep-learning.ipynb
 - file: weeks/06.md
+  sections:
+  - file: weeks/06-evaluate.ipynb
 - file: weeks/07.md
 - file: weeks/08.md
 - file: weeks/09.md
