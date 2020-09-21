@@ -55,8 +55,8 @@ end of the quarter.
 |5|[Building a Deep Learning Model](weeks/05.md)|
 |6|[Evalulating Model Performance and Robustness](weeks/06.md)|
 |7|[Optimizing Other Objectives](weeks/07.md)|
-|8|[Application to Real Data](weeks/08.md)|
-|9|[Extending the Model](weeks/09.md)|
+|8|[Extending the Model](weeks/08.md)|
+|9|[Application to Real Data](weeks/09.md)|
 |10|Present Proposals|
 
 ## Office Hours
