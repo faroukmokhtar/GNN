@@ -16,4 +16,4 @@ launch_buttons:
   jupyterhub_url: "https://datahub.ucsd.edu"
 
 execute:
-  timeout: 300
+  timeout: -1
