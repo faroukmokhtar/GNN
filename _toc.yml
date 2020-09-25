@@ -16,6 +16,8 @@
   sections:
   - file: weeks/06-evaluate.ipynb
 - file: weeks/07.md
+  sections:
+  - file: weeks/07-objectives.ipynb
 - file: weeks/08.md
 - file: weeks/09.md
 - file: zreferences.md
