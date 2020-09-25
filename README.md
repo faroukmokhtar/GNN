@@ -8,7 +8,7 @@ Data science capstone (https://dsc-capstone.github.io/) particle physics domain 
 
 Developed by Javier Duarte <https://orcid.org/0000-0002-5076-7096>, Frank Würthwein <https://orcid.org/0000-0001-5912-6124>.
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jmduarte/HiggsToBBMachineLearning/dsc)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jmduarte/capston-particle-physics-domain/master)
 
 ## Introduction
 
