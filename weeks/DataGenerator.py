@@ -6,7 +6,7 @@ class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
     def __init__(self, list_files, features, labels, spectators, batch_size=1024, n_dim=60, 
                  remove_mass_pt_window=False, remove_unlabeled=True, return_spectators=False,
-                 max_entry = 20000):
+                 max_entry = 20000, scale_mass_pt = [1, 1]):
         'Initialization'
         self.batch_size = batch_size
         self.labels = labels
@@ -14,6 +14,7 @@ class DataGenerator(keras.utils.Sequence):
         self.features = features
         self.spectators = spectators
         self.return_spectators = return_spectators
+        self.scale_mass_pt = scale_mass_pt
         self.n_dim = n_dim
         self.n_channels = len(self.features)
         self.remove_mass_pt_window = remove_mass_pt_window
@@ -82,7 +83,7 @@ class DataGenerator(keras.utils.Sequence):
         # Generate data
         for ifile, start, stop in zip(unique_files, starts, stops):
             if self.return_spectators:
-                X, y, z = self.__get_features_labels(ifile, start, stop)
+                X, [y, z] = self.__get_features_labels(ifile, start, stop)
                 zs.append(z)
             else:
                 X, y = self.__get_features_labels(ifile, start, stop)
@@ -97,7 +98,7 @@ class DataGenerator(keras.utils.Sequence):
                 z = np.concatenate(zs,axis=0)
             
         if self.return_spectators:
-            return X, y, z
+            return X, [y, z]
         
         return X, y
                          
@@ -133,15 +134,15 @@ class DataGenerator(keras.utils.Sequence):
                                                     label_array_all['label_QCD_others'])
         y[:,1] = label_array_all['label_H_bb']
 
-        
-        if self.remove_mass_pt_window:
-            # remove data outside of mass/pT range
+        if self.remove_mass_pt_window or self.return_spectators:
             spec_array = tree.arrays(branches=self.spectators, 
                                      entrystart=entrystart,
                                      entrystop=entrystop,
                                      namedecode='utf-8')
-            
             z = np.stack([spec_array[spec] for spec in self.spectators],axis=1)
+            
+        if self.remove_mass_pt_window:
+            # remove data outside of mass/pT range
             X = X[(z[:,0] > 40) & (z[:,0] < 200) & (z[:,1] > 300) & (z[:,1] < 2000)]
             y = y[(z[:,0] > 40) & (z[:,0] < 200) & (z[:,1] > 300) & (z[:,1] < 2000)]
             z = z[(z[:,0] > 40) & (z[:,0] < 200) & (z[:,1] > 300) & (z[:,1] < 2000)]
@@ -154,6 +155,6 @@ class DataGenerator(keras.utils.Sequence):
             y = y[np.sum(y,axis=1)==1]
             
         if self.return_spectators:
-            return X, y, z
+            return X, [y, z/self.scale_mass_pt]
         
         return X, y
