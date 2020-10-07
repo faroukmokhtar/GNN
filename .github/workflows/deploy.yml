@@ -11,7 +11,7 @@ jobs:
   deploy-book:
     runs-on: ubuntu-latest
     container: 
-      image: nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+      image: kundajelab/cuda-anaconda-base:latest
     steps:
     - uses: actions/checkout@v2
 
