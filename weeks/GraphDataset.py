@@ -7,29 +7,23 @@ import uproot
 import glob
 import multiprocessing
 from pathlib import Path
-
-def process_func(args):
-    self, raw_path, k = args
-    return self.process_one_chunk(raw_path, k)
+import tqdm
 
 class GraphDataset(Dataset):
-    def __init__(self, root, features, labels, transform=None, pre_transform=None,
-                 n_events=-1, n_proc=1, n_events_merge=100):
+    def __init__(self, root, features, labels, spectators, transform=None, pre_transform=None,
+                 n_events=-1, n_events_merge=1000):
         """
         Initialize parameters of graph dataset
         Args:
             root (str): path
             n_events (int): how many events to process (-1=all)
             n_events_merge (int): how many events to merge
-            leading_pair_only (int): toggle to process only leading 2 jets / event
         """
         self.features = features
         self.labels = labels
         self.spectators = spectators
         self.n_events = n_events
         self.n_events_merge = n_events_merge
-        self.n_proc = n_proc
-        self.chunk_size = self.n_events // self.n_proc
         super(GraphDataset, self).__init__(root, transform, pre_transform)
 
     @property
@@ -95,26 +89,26 @@ class GraphDataset(Dataset):
             z = np.stack([spec_array[spec] for spec in self.spectators],axis=1)
 
 
-            for i in range(n_samples):
+            for i in tqdm.tqdm(range(n_samples)):
                 if i%self.n_events_merge == 0:
                     datas = []
-                n_particles = len(feature_array[self.features[0]])
+                n_particles = len(feature_array[self.features[0]][i])
                 pairs = np.stack([[m, n] for (m, n) in itertools.product(range(n_particles),range(n_particles)) if m!=n])
                 edge_index = torch.tensor(pairs, dtype=torch.long)
                 edge_index=edge_index.t().contiguous()
-                x = torch.tensor(feature_array[i], dtype=torch.float)
-                u = torch.tensor(z, dtype=torch.float)
-                data = Data(x=x, edge_index=edge_index, y=y)
+                x = torch.tensor([feature_array[feat][i] for feat in self.features], dtype=torch.float).T
+                u = torch.tensor(z[i], dtype=torch.float)
+                data = Data(x=x, edge_index=edge_index, y=torch.tensor(y[i:i+1],dtype=torch.int))
                 data.u = torch.unsqueeze(u, 0)
                 if self.pre_filter is not None and not self.pre_filter(data):
                     continue
                 if self.pre_transform is not None:
                     data = self.pre_transform(data)
-                    datas.append([data])
+                datas.append([data])
 
                 if i%self.n_events_merge == self.n_events_merge-1:
                     datas = sum(datas,[])
-                    torch.save(datas, osp.join(self.processed_dir, 'data_{}'.format(i)))
+                    torch.save(datas, osp.join(self.processed_dir, 'data_{}.pt'.format(i)))
 
     def get(self, idx):
         p = osp.join(self.processed_dir, self.processed_file_names[idx])
@@ -126,7 +120,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--dataset", type=str, help="dataset path", required=True)
     parser.add_argument("--n-events", type=int, default=-1, help="number of events (-1 means all)")
-    parser.add_argument("--n-events-merge", type=int, default=100, help="number of events to merge")
+    parser.add_argument("--n-events-merge", type=int, default=1000, help="number of events to merge")
     args = parser.parse_args()
 
     # 48 track-level features
@@ -162,7 +156,7 @@ if __name__ == "__main__":
             'track_dxydz',
             'track_dxysig',
             'track_dz',
-            'track_dzdz',
+            'track_dzdz',        
             'track_dzsig',
             'track_erel',
             'track_etarel',
@@ -172,7 +166,7 @@ if __name__ == "__main__":
             'track_isMu',
             'track_lostInnerHits',
             'track_mass',
-            'track_normchi2',
+            'track_normchi2',            
             'track_phirel',
             'track_pt',
             'track_ptrel',
@@ -181,16 +175,16 @@ if __name__ == "__main__":
 
     # spectators to define mass/pT window
     spectators = ['fj_sdmass',
-              'fj_pt']
+                  'fj_pt']
 
     # 2 labels: QCD or Hbb (we'll reduce the following labels)
     labels =  ['label_QCD_b',
-           'label_QCD_bb',
-           'label_QCD_c',
-           'label_QCD_cc',
-           'label_QCD_others',
-           'sample_isQCD',
-           'label_H_bb']
+               'label_QCD_bb',
+               'label_QCD_c',
+               'label_QCD_cc',
+               'label_QCD_others',
+               'sample_isQCD',
+               'label_H_bb']
 
     gdata = GraphDataset(args.dataset, features, labels, spectators,
                          n_events=args.n_events,
