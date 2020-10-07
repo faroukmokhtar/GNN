@@ -93,6 +93,7 @@ class GraphDataset(Dataset):
                 if i%self.n_events_merge == 0:
                     datas = []
                 n_particles = len(feature_array[self.features[0]][i])
+                if n_particles<1: continue
                 pairs = np.stack([[m, n] for (m, n) in itertools.product(range(n_particles),range(n_particles)) if m!=n])
                 edge_index = torch.tensor(pairs, dtype=torch.long)
                 edge_index=edge_index.t().contiguous()

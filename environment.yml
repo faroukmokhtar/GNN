@@ -13,7 +13,7 @@ dependencies:
     - pip
     - pip:
       - jupyter-book
-      - torch-scatter==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.50.0.html
+      - torch-scatter==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.5.0.html
       - torch-sparse==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.5.0.html
       - torch-cluster==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.5.0.html
       - torch-spline-conv==latest+cu102 -f https://pytorch-geometric.com/whl/torch-1.5.0.html
