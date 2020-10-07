@@ -19,6 +19,7 @@
   sections:
   - file: weeks/07-objectives.ipynb
 - file: weeks/08.md
+  sections:
   - file: weeks/08-extending.ipynb
 - file: weeks/09.md
 - file: zreferences.md
