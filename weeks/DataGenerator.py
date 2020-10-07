@@ -135,11 +135,6 @@ class DataGenerator(keras.utils.Sequence):
         y[:,1] = label_array_all['label_H_bb']
 
         if self.remove_mass_pt_window or self.return_spectators:
-            spec_array = tree.arrays(branches=self.spectators, 
-                                     entrystart=entrystart,
-                                     entrystop=entrystop,
-                                     namedecode='utf-8')
-            z = np.stack([spec_array[spec] for spec in self.spectators],axis=1)
             
         if self.remove_mass_pt_window:
             # remove data outside of mass/pT range
