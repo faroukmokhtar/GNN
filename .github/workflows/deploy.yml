@@ -10,8 +10,6 @@ on:
 jobs:
   deploy-book:
     runs-on: ubuntu-latest
-    container: 
-      image: kundajelab/cuda-anaconda-base:latest
     steps:
     - uses: actions/checkout@v2
 
