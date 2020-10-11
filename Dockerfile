@@ -21,14 +21,13 @@ RUN bash install_xrootd.sh && \
 ENV PATH /opt/xrootd/bin:${PATH}
 ENV LD_LIBRARY_PATH /opt/xrootd/lib
 
-RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
-    python2 get-pip.py
+#RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+#    python2 get-pip.py
 
-RUN pip install coffea tables mplhep setGPU comet_ml llvmlite --ignore-installed \
-    && pip install tqdm PyYAML uproot lz4 xxhash \
-    && pip install tables \
-    && pip install onnxruntime-gpu \
-    && pip install -U jupyter-book
+RUN python3 -m pip install coffea tables mplhep setGPU comet_ml llvmlite \
+    && python3 -m pip install tqdm PyYAML uproot lz4 xxhash \
+    && python3 -m pip install tables \
+    && python3 -m pip install -U jupyter-book
 
 USER $NB_USER
 WORKDIR /home/$NB_USER
