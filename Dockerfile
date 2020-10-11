@@ -31,20 +31,17 @@ RUN python3 -m pip install coffea tables mplhep setGPU comet_ml llvmlite  --igno
 
 RUN conda install -c conda-forge xrootd -y
 
-ENV CUDA=cu102
+ENV CUDA=cu101
 
 ENV TORCH=1.5.0
 
 ENV TORCH_CUDA_ARCH_LIST=6.0,7.0
     
-RUN set -x \
-    && pip install torch-scatter==latest+${CUDA} -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
-    && pip install torch-sparse==latest+${CUDA}  -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
-    && pip install torch-cluster==latest+${CUDA}  -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
-    && pip install torch-spline-conv==latest+${CUDA}  -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
-    && pip install torch-geometric \ 
-    && pip install dgl-$CUDA \
-    && pip install tfdlpack-gpu
+RUN python3 -m pip  install torch-scatter==latest+${CUDA} -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
+    && python3 -m pip  install torch-sparse==latest+${CUDA}  -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
+    && python3 -m pip  install torch-cluster==latest+${CUDA}  -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
+    && python3 -m pip  install torch-spline-conv==latest+${CUDA}  -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
+    && python3 -m pip  install torch-geometric
 
 USER $NB_USER
 WORKDIR /home/$NB_USER
