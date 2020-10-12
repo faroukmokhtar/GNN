@@ -21,10 +21,10 @@ RUN bash install_xrootd.sh && \
 ENV PATH /opt/xrootd/bin:${PATH}
 ENV LD_LIBRARY_PATH /opt/xrootd/lib
 
+RUN conda install -n ml-latest -c conda-forge uproot xrootd scikit-learn matplotlib tqdm 
+
 # Create the environment:
 SHELL ["conda", "run", "-n", "ml-latest", "/bin/bash", "-c"]
-
-RUN conda install -c conda-forge numpy uproot tensorflow xrootd scikit-learn matplotlib tqdm 
 
 ENV CUDA=cu101
 
