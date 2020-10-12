@@ -36,6 +36,20 @@ RUN pip install torch-scatter==latest+${CUDA} -f https://pytorch-geometric.com/w
     && pip install torch-spline-conv==latest+${CUDA}  -f https://pytorch-geometric.com/whl/torch-${TORCH}.html \
     && pip install torch-geometric
 
+
+COPY fix-permissions /usr/local/bin/fix-permissions
+
+RUN chmod +x /usr/local/bin/fix-permissions
+
+RUN set -x \
+    && fix-permissions /home/$NB_USER \
+    && fix-permissions /opt/conda
+
+
+RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+    usermod -aG sudo jovyan && \
+    usermod -aG root jovyan
+
 USER $NB_USER
 WORKDIR /home/$NB_USER
 
