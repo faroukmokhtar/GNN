@@ -24,7 +24,7 @@ ENV LD_LIBRARY_PATH /opt/xrootd/lib
 # Create the environment:
 SHELL ["conda", "run", "-n", "ml-latest", "/bin/bash", "-c"]
 
-RUN conda install numpy==1.16.4 uproot tensorflow keras xrootd scikit-learn matplotlib tqdm 
+RUN conda install -c conda-forge numpy uproot tensorflow xrootd scikit-learn matplotlib tqdm 
 
 ENV CUDA=cu101
 
