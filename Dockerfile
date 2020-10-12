@@ -37,14 +37,11 @@ RUN pip install torch-scatter==latest+${CUDA} -f https://pytorch-geometric.com/w
     && pip install torch-geometric
 
 
-COPY fix-permissions /usr/local/bin/fix-permissions
+ADD fix-permissions fix-permissions
 
-RUN chmod +x /usr/local/bin/fix-permissions
+RUN chmod +x fix-permissions
 
-RUN set -x \
-    && fix-permissions /home/$NB_USER \
-    && fix-permissions /opt/conda
-
+RUN fix-permissions /home/$NB_USER
 
 RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
     usermod -aG sudo jovyan && \
