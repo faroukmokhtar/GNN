@@ -44,9 +44,9 @@ RUN chmod +x fix-permissions
 
 RUN fix-permissions /home/$NB_USER
 
-RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
-    usermod -aG sudo jovyan && \
-    usermod -aG root jovyan
+#RUN echo "jovyan ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+#    usermod -aG sudo jovyan && \
+#    usermod -aG root jovyan
 
 #EXPOSE 8888
 
