@@ -27,6 +27,9 @@ This implies reproducing Figure 4, Figure 5, and if time permits Figure 8 in thi
 The latter-half of Quarter 1 will introduce you to further topics to inform possible
 avenues for further research.
 
+The report can be produced in a 4-page 2-column Physical Review Letters (PRL) format. The LaTeX package (RevTeX) can be found here: <https://journals.aps.org/revtex>
+More information can be found here: https://journals.aps.org/prl/authors
+
 ## Section Participation
 
 Participation in the weekly discussion section is *mandatory*. Each
