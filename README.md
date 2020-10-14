@@ -59,9 +59,16 @@ end of the quarter.
 |9|[Application to Real Data](weeks/09.md)|
 |10|Present Proposals|
 
+## Discussion
+
+Wed: 3:00 - 3:50 pm
+
 ## Office Hours
 
+Farouk Mokhtar 
+Wed: 10:00 - 11:00 am
+Fri: 1:00 - 2:00 pm
+Sign up here: https://calendly.com/fmokhtar/dsc-180a-office-hour
 
-
-
+## Lab
 
