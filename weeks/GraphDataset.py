@@ -12,19 +12,23 @@ import yaml
 
 class GraphDataset(Dataset):
     def __init__(self, root, features, labels, spectators, transform=None, pre_transform=None,
-                 n_events=-1, n_events_merge=1000):
+                 n_events=-1, n_events_merge=1000, file_names=None, remove_unlabeled=True):
         """
         Initialize parameters of graph dataset
         Args:
             root (str): path
             n_events (int): how many events to process (-1=all)
             n_events_merge (int): how many events to merge
+            file_names (list of strings): file names
+            remove_unlabeled (boolean): remove unlabeled data samples
         """
         self.features = features
         self.labels = labels
         self.spectators = spectators
         self.n_events = n_events
         self.n_events_merge = n_events_merge
+        self.file_names = file_names
+        self.remove_unlabeled = remove_unlabeled
         super(GraphDataset, self).__init__(root, transform, pre_transform)
 
     @property
@@ -32,9 +36,10 @@ class GraphDataset(Dataset):
         """
         Determines which file is being processed
         """
-        files = ['root://eospublic.cern.ch//eos/opendata/cms/datascience/HiggsToBBNtupleProducerTool/HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC/train/ntuple_merged_10.root']
-
-        return files
+        if self.file_names is None:
+            return ['root://eospublic.cern.ch//eos/opendata/cms/datascience/HiggsToBBNtupleProducerTool/HiggsToBBNTuple_HiggsToBB_QCD_RunII_13TeV_MC/train/ntuple_merged_10.root']
+        else:
+            return self.file_names
 
     @property
     def processed_file_names(self):
@@ -87,20 +92,22 @@ class GraphDataset(Dataset):
             spec_array = tree.arrays(branches=self.spectators,
                                      entrystop=self.n_events,
                                      namedecode='utf-8')
-            z = np.stack([spec_array[spec] for spec in self.spectators],axis=1)
-
+            z = np.stack([spec_array[spec] for spec in self.spectators],axis=1)            
 
             for i in tqdm.tqdm(range(n_samples)):
                 if i%self.n_events_merge == 0:
-                    datas = []
+                    datas = []                    
+                if self.remove_unlabeled:
+                    if np.sum(y[i:i+1],axis=1)==0:
+                        continue
                 n_particles = len(feature_array[self.features[0]][i])
-                if n_particles==0: continue
+                if n_particles<2: continue
                 pairs = np.stack([[m, n] for (m, n) in itertools.product(range(n_particles),range(n_particles)) if m!=n])
                 edge_index = torch.tensor(pairs, dtype=torch.long)
                 edge_index=edge_index.t().contiguous()
                 x = torch.tensor([feature_array[feat][i] for feat in self.features], dtype=torch.float).T
                 u = torch.tensor(z[i], dtype=torch.float)
-                data = Data(x=x, edge_index=edge_index, y=torch.tensor(y[i:i+1],dtype=torch.int))
+                data = Data(x=x, edge_index=edge_index, y=torch.tensor(y[i:i+1],dtype=torch.long))
                 data.u = torch.unsqueeze(u, 0)
                 if self.pre_filter is not None and not self.pre_filter(data):
                     continue
