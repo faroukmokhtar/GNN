@@ -14,6 +14,8 @@ dependencies:
     - pip
     - pip:
       - jupyter-book
+      - https://download.pytorch.org/whl/cpu/torch-1.5.0%2Bcpu-cp37-cp37m-linux_x86_64.whl
+      - https://download.pytorch.org/whl/cpu/torchvision-0.6.0%2Bcpu-cp37-cp37m-linux_x86_64.whl
       - https://pytorch-geometric.com/whl/torch-1.5.0/torch_scatter-latest%2Bcpu-cp37-cp37m-linux_x86_64.whl
       - https://pytorch-geometric.com/whl/torch-1.5.0/torch_sparse-latest%2Bcpu-cp37-cp37m-linux_x86_64.whl
       - https://pytorch-geometric.com/whl/torch-1.5.0/torch_cluster-latest%2Bcpu-cp37-cp37m-linux_x86_64.whl
