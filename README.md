@@ -4,7 +4,7 @@
 
 # Particle Physics and Machine Learning
 
-UCSD Data Science Capstone (https://dsc-capstone.github.io/) particle physics domain (DSC 180AB B06).
+UCSD Data Science Capstone (<https://dsc-capstone.github.io/>) particle physics domain (DSC 180AB B06).
 
 Developed by Javier Duarte <https://orcid.org/0000-0002-5076-7096>, Frank Würthwein <https://orcid.org/0000-0001-5912-6124>.
 
