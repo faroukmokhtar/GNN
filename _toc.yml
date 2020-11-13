@@ -12,6 +12,7 @@
 - file: weeks/05.md
   sections:
   - file: weeks/05-deep-learning.ipynb
+  - file: weeks/05-jet-images.ipynb
 - file: weeks/06.md
   sections:
   - file: weeks/06-evaluate.ipynb
