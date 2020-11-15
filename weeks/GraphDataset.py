@@ -7,7 +7,6 @@ import uproot
 import glob
 import multiprocessing
 from pathlib import Path
-import tqdm
 import yaml
 
 class GraphDataset(Dataset):
