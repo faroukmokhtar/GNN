@@ -8,6 +8,7 @@ import glob
 import multiprocessing
 from pathlib import Path
 import yaml
+from tqdm.notebook import tqdm
 
 class GraphDataset(Dataset):
     def __init__(self, root, features, labels, spectators, transform=None, pre_transform=None,
@@ -93,7 +94,7 @@ class GraphDataset(Dataset):
                                      namedecode='utf-8')
             z = np.stack([spec_array[spec] for spec in self.spectators],axis=1)            
 
-            for i in tqdm.tqdm(range(n_samples)):
+            for i in tqdm(range(n_samples)):
                 if i%self.n_events_merge == 0:
                     datas = []                    
                 if self.remove_unlabeled:
