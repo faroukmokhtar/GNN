@@ -15,7 +15,7 @@ jobs:
 
     # Install dependencies
     - name: Setup Miniconda
-      uses: conda-incubator/setup-miniconda@v1.7.0
+      uses: conda-incubator/setup-miniconda@v2
       with:
         activate-environment: ml-latest
         environment-file: environment.yml
