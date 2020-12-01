@@ -12,40 +12,34 @@ Developed by Javier Duarte <https://orcid.org/0000-0002-5076-7096>, Frank Würth
 
 ## Introduction
 
-This domain centers around applying modern machine learning techniques to
-particle physics data.
+This domain centers around applying modern machine learning techniques to particle physics data.
 
 ## Result Replication
 
-The bulk of the first half of the project will focus on the task of
-identifying Higgs boson decaying to bottom quarks. Specifically, reproducing 
-(or surpassing) results in this paper (not necessarily with the same ML technique):
+The bulk of the first half of the project will focus on the task of identifying Higgs boson decaying to bottom quarks. 
+Specifically, reproducing (or surpassing) results in this paper (not necessarily with the same ML technique):
 * [Interaction networks for the identification of boosted \\(H \to b\bar{b}\\)](https://arxiv.org/abs/1909.12285)
 
 This implies reproducing Figure 4, Figure 5, and if time permits Figure 8 in this paper {cite}`Moreno:2019neq`.
 
-The latter-half of Quarter 1 will introduce you to further topics to inform possible
-avenues for further research.
+The latter-half of Quarter 1 will introduce you to further topics to inform possible avenues for further research.
 
-The report can be produced in a 4-page 2-column Physical Review Letters (PRL) format. The LaTeX package (RevTeX) can be found here: <https://journals.aps.org/revtex>
-More information can be found here: https://journals.aps.org/prl/authors
+The report can be produced in a 4-page 2-column Physical Review Letters (PRL) format. 
+The LaTeX package (RevTeX) can be found here: <https://journals.aps.org/revtex>
+More information can be found here: <https://journals.aps.org/prl/authors>
 
 ## Section Participation
 
-Participation in the weekly discussion section is *mandatory*. Each
-week, you are responsible for doing the reading/task assigned in the
-[schedule](#schedule). Come to section prepared to ask questions about
-and discuss the results of these tasks.
+Participation in the weekly discussion section is *mandatory*. 
+Each week, you are responsible for doing the reading/task assigned in the [schedule](#schedule). 
+Come to section prepared to ask questions about and discuss the results of these tasks.
 
-Each week, turn in answers to the weekly questions to Canvas. These
-questions are meant to focus your work for the week and help prepare
-you for discussion. If you have questions about your work, please ask
-them in section or office hours.
+Each week, turn in answers to the weekly questions to Canvas. 
+These questions are meant to focus your work for the week and help prepare you for discussion. 
+If you have questions about your work, please ask them in section or office hours.
 
-You are responsible for the entire weekly reading/task, even if
-portions are not covered in the weekly questions. The weekly tasks are
-the building blocks for the project proposals/assignments due at the
-end of the quarter.
+You are responsible for the entire weekly reading/task, even if portions are not covered in the weekly questions.
+The weekly tasks are the building blocks for the project proposals/assignments due at the end of the quarter.
 
 ## Schedule
 
@@ -64,14 +58,12 @@ end of the quarter.
 
 ## Discussion
 
-Wed: 3:00 - 3:50 pm
+- Wed: 2:00 - 2:50 pm
 
 ## Office Hours
 
 Farouk Mokhtar 
-Wed: 10:00 - 11:00 am
-Fri: 1:00 - 2:00 pm
-Sign up here: https://calendly.com/fmokhtar/dsc-180a-office-hour
-
-## Lab
+- Wed: 10:00 - 11:00 am
+- Fri: 1:00 - 2:00 pm
+- Sign up here: <https://calendly.com/fmokhtar/dsc-180a-office-hour>
 
