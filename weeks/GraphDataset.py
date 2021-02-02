@@ -80,13 +80,20 @@ class GraphDataset(Dataset):
             
             n_samples = label_array_all[self.labels[0]].shape[0]
 
-            y = np.zeros((n_samples,2))
+            """y = np.zeros((n_samples,2))
             y[:,0] = label_array_all['sample_isQCD'] * (label_array_all['label_QCD_b'] + \
                                                         label_array_all['label_QCD_bb'] + \
                                                         label_array_all['label_QCD_c'] + \
                                                         label_array_all['label_QCD_cc'] + \
                                                         label_array_all['label_QCD_others'])
-            y[:,1] = label_array_all['label_H_bb']
+            y[:,1] = label_array_all['label_H_bb']"""
+            y = np.zeros((n_samples,6))
+            y[:,0] = label_array_all['sample_isQCD'] * label_array_all['label_QCD_b']
+            y[:,1] = label_array_all['sample_isQCD'] * label_array_all['label_QCD_bb']
+            y[:,2] = label_array_all['sample_isQCD'] * label_array_all['label_QCD_c']
+            y[:,3] = label_array_all['sample_isQCD'] * label_array_all['label_QCD_cc']
+            y[:,4] = label_array_all['sample_isQCD'] * label_array_all['label_QCD_others']
+            y[:,5] = label_array_all['label_H_bb']
 
 
             spec_array = tree.arrays(branches=self.spectators,
