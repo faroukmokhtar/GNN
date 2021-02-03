@@ -79,6 +79,7 @@ class GraphDataset(Dataset):
                                           namedecode='utf-8')
             
             n_samples = label_array_all[self.labels[0]].shape[0]
+            print(n_samples)
 
             """y = np.zeros((n_samples,2))
             y[:,0] = label_array_all['sample_isQCD'] * (label_array_all['label_QCD_b'] + \
@@ -108,7 +109,7 @@ class GraphDataset(Dataset):
                     if np.sum(y[i:i+1],axis=1)==0:
                         continue
                 n_particles = len(feature_array[self.features[0]][i])
-                if n_particles<2: continue
+                if n_particles<6: continue
                 pairs = np.stack([[m, n] for (m, n) in itertools.product(range(n_particles),range(n_particles)) if m!=n])
                 edge_index = torch.tensor(pairs, dtype=torch.long)
                 edge_index=edge_index.t().contiguous()
